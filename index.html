@@ -59,12 +59,10 @@
         const startButton = document.getElementById('startButton');
         const resultDiv = document.getElementById('result');
         let totalSum = 0;
-        let clickCount = 0;
 
         startButton.addEventListener('click', () => {
             startButton.style.display = 'none';
             totalSum = 0;
-            clickCount = 0;
             resultDiv.style.display = 'none';
             startHongbaoRain();
         });
@@ -98,7 +96,6 @@
                 hongbao.classList.add('show-number'); // 显示数字
                 hongbao.innerText = randomNumber; // 显示数字
                 totalSum += randomNumber;
-                clickCount++;
                 hongbao.remove();
             });
 

@@ -29,15 +29,12 @@
             width: 50px;
             height: 50px;
             background-color: #ff4d4f;
-            color: transparent; /* 初始状态隐藏数字 */
+            color: white;
             font-size: 20px;
             text-align: center;
             line-height: 50px;
             border-radius: 50%;
             cursor: pointer;
-        }
-        .hongbao.show-number {
-            color: black; /* 显示数字时的颜色 */
         }
         #result {
             position: absolute;
@@ -59,10 +56,12 @@
         const startButton = document.getElementById('startButton');
         const resultDiv = document.getElementById('result');
         let totalSum = 0;
+        let clickCount = 0;
 
         startButton.addEventListener('click', () => {
             startButton.style.display = 'none';
             totalSum = 0;
+            clickCount = 0;
             resultDiv.style.display = 'none';
             startHongbaoRain();
         });
@@ -85,7 +84,7 @@
             const hongbao = document.createElement('div');
             hongbao.className = 'hongbao';
             const randomNumber = Math.floor(Math.random() * 10) + 1;
-            hongbao.dataset.number = randomNumber; // 存储随机数字
+            hongbao.innerText = randomNumber;
 
             hongbao.style.left = `${Math.random() * 100}%`;
             hongbao.style.top = `-50px`;
@@ -93,10 +92,8 @@
             document.body.appendChild(hongbao);
 
             hongbao.addEventListener('click', () => {
-                hongbao.classList.add('show-number'); // 显示数字
-                hongbao.innerText = randomNumber; // 显示数字
                 totalSum += randomNumber;
-                console.log(`Clicked number: ${randomNumber}`); // 调试信息
+                clickCount++;
                 hongbao.remove();
             });
 
